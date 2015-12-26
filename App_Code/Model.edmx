@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Courses">
+          <Key>
+            <PropertyRef Name="IdCourse" />
+          </Key>
+          <Property Name="IdCourse" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nchar" MaxLength="64" Nullable="false" />
+          <Property Name="Author" Type="int" Nullable="false" />
+          <Property Name="Content" Type="nchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="Questions">
+          <Key>
+            <PropertyRef Name="IdQuestion" />
+          </Key>
+          <Property Name="IdQuestion" Type="int" Nullable="false" />
+          <Property Name="Author" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nchar" MaxLength="64" Nullable="false" />
+          <Property Name="Content" Type="nchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="IdRole" />
+          </Key>
+          <Property Name="IdRole" Type="int" Nullable="false" />
+          <Property Name="Role" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Table">
+          <Key>
+            <PropertyRef Name="IdRole" />
+          </Key>
+          <Property Name="IdRole" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="IdUser" />
+          </Key>
+          <Property Name="IdUser" Type="int" Nullable="false" />
+          <Property Name="Nome" Type="nchar" MaxLength="64" Nullable="false" />
+          <Property Name="Email" Type="nchar" MaxLength="64" Nullable="false" />
+          <Property Name="Password" Type="nchar" MaxLength="64" Nullable="false" />
+          <Property Name="Role" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="DatabaseModelStoreContainer">
+          <EntitySet Name="Courses" EntityType="Self.Courses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Questions" EntityType="Self.Questions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table" EntityType="Self.Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DatabaseEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="Courses" EntityType="DatabaseModel.Courses" />
+          <EntitySet Name="Questions" EntityType="DatabaseModel.Questions" />
+          <EntitySet Name="Roles" EntityType="DatabaseModel.Roles" />
+          <EntitySet Name="Table" EntityType="DatabaseModel.Table" />
+          <EntitySet Name="Users" EntityType="DatabaseModel.Users" />
+        </EntityContainer>
+        <EntityType Name="Courses">
+          <Key>
+            <PropertyRef Name="IdCourse" />
+          </Key>
+          <Property Name="IdCourse" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="64" FixedLength="true" Unicode="true" />
+          <Property Name="Author" Type="Int32" Nullable="false" />
+          <Property Name="Content" Type="String" MaxLength="256" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Questions">
+          <Key>
+            <PropertyRef Name="IdQuestion" />
+          </Key>
+          <Property Name="IdQuestion" Type="Int32" Nullable="false" />
+          <Property Name="Author" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="64" FixedLength="true" Unicode="true" />
+          <Property Name="Content" Type="String" MaxLength="256" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="IdRole" />
+          </Key>
+          <Property Name="IdRole" Type="Int32" Nullable="false" />
+          <Property Name="Role" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Table">
+          <Key>
+            <PropertyRef Name="IdRole" />
+          </Key>
+          <Property Name="IdRole" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="IdUser" />
+          </Key>
+          <Property Name="IdUser" Type="Int32" Nullable="false" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="64" FixedLength="true" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="64" FixedLength="true" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="64" FixedLength="true" Unicode="true" />
+          <Property Name="Role" Type="Int32" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DatabaseModelStoreContainer" CdmEntityContainer="DatabaseEntities" >
+          <EntitySetMapping Name="Courses">
+            <EntityTypeMapping TypeName="DatabaseModel.Courses">
+              <MappingFragment StoreEntitySet="Courses">
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="IdCourse" ColumnName="IdCourse" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Questions">
+            <EntityTypeMapping TypeName="DatabaseModel.Questions">
+              <MappingFragment StoreEntitySet="Questions">
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="IdQuestion" ColumnName="IdQuestion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="DatabaseModel.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table">
+            <EntityTypeMapping TypeName="DatabaseModel.Table">
+              <MappingFragment StoreEntitySet="Table">
+                <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="DatabaseModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
